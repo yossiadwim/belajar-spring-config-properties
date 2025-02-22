@@ -13,15 +13,15 @@ import org.springframework.test.context.ActiveProfiles;
 
 
 @SpringBootTest(classes = ProfileEnvironmentTest.TestApplication.class)
-@ActiveProfiles({"local", "production"})
-public class ProfileEnvironmentTest {
+@ActiveProfiles({"production", "local"})
+class ProfileEnvironmentTest {
 
     @Autowired
     private TestApplication.SampleProfile sampleProfile;
 
     @Test
     void testActiveProfiles() {
-        Assertions.assertArrayEquals(new String[]{"local", "production"}, sampleProfile.getProfiles());
+        Assertions.assertArrayEquals(new String[]{"production", "local"}, sampleProfile.getProfiles());
     }
 
     @SpringBootApplication
@@ -29,15 +29,13 @@ public class ProfileEnvironmentTest {
 
         @Setter
         @Component
-        abstract static class SampleProfile implements EnvironmentAware{
+        static class SampleProfile implements EnvironmentAware{
 
             private Environment environment;
 
             public String[] getProfiles(){
                 return environment.getActiveProfiles();
             }
-
-
         }
     }
 }

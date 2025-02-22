@@ -47,13 +47,13 @@ public class ValueTest {
         @Getter
         public static class ApplicationProperties {
 
-            @Value("${spring.application.name}")
+            @Value("${application.name}")
             private String name;
 
-            @Value("${spring.application.version}")
+            @Value("${application.version}")
             private Integer version;
 
-            @Value("${spring.application.production-mode}")
+            @Value("${application.production-mode}")
             private boolean productionMode;
         }
 
